@@ -2,159 +2,170 @@
     "title": "FARO-App-PS",
     "timestamp": "6/18/2020 14:55:14",
     "panel": [
-       {
-          "title": "FARO Focus Help",
-          "password": "",
-          "hidden": "False",
-          "mapfolder": "",
-          "tile": [
-             {
-                "media": "link",
-                "title": "Quick Start Guide",
-                "link": "https://knowledge.faro.com/Hardware/3D_Scanners/Focus/Quick_Start_Guides_for_the_Focus_M_and_S_Series?mt-learningpath=focus_m70_s150-350_downloads",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             },
-             {
-                "media": "youtube",
-                "title": "Youtube video",
-                "link": "https://youtu.be/oWYCKyAVtjs",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             },
-             {
-                "media": "link",
-                "title": "Wireless Remote",
-                "link": "http://192.168.123.123:8400/ui",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             }
-          ]
-       },
-       {
-          "title": "FARO ScanPlan Help",
-          "password": "",
-          "hidden": "False",
-          "mapfolder": "",
-          "tile": [
-             {
-                "media": "pdf",
-                "title": "ScanPlan Setup Guide",
-                "link": "https://s3.us-east-2.amazonaws.com/faroassist-database/scanplan/pdf/ScanPlan-Comprehensive-setup-guide-V1.02.pdf",
-                "tooltip": "Use ScanPlanToday!",
-                "folder": "",
-                "icon": "",
-                "tags": "scanplan, workflow, steps, how, use, setup, basics, first, time"
-             },
-             {
-                "media": "link",
-                "title": "Launch ScanPlan Control App",
-                "link": "http://192.168.123.123:8400/ui",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             },
-             {
-                "media": "pdf",
-                "title": "Jump Start - Phone Friendly",
-                "link": "https://s3.us-east-2.amazonaws.com/faroassist-database/scanplan/pdf/SP_JumpStart.pdf",
-                "tooltip": "Basic workflow to start using the ScanPlan",
-                "folder": "",
-                "icon": "https://s3.us-east-2.amazonaws.com/faroassist-database/scanplan/images/PhoneFriendly.png",
-                "tags": "scanplan, workflow, steps, how, use, setup, basics"
-             }
-          ]
-       },
-       {
-          "title": "FARO Assist! (FZ3 + FZ2)",
-          "password": "",
-          "hidden": "False",
-          "mapfolder": "",
-          "tile": [
-             {
-                "media": "link",
-                "title": "FZ3 - FARO Assist",
-                "link": "https://www.faroassist.com/?v=p03",
-                "tooltip": "",
-                "folder": "",
-                "icon": "https://s3.us-east-2.amazonaws.com/faroassist-database\\_resources\\fz3_charm.png",
-                "tags": ""
-             },
-             {
-                "media": "link",
-                "title": "FZ2 - FARO Assist",
-                "link": "https://www.faroassist.com/?v=p02",
-                "tooltip": "",
-                "folder": "",
-                "icon": "https://s3.us-east-2.amazonaws.com/faroassist-database\\_resources\\fz2_charm.png",
-                "tags": ""
-             }
-          ]
-       },
-       {
-          "title": "Your FARO Expert",
-          "password": "",
-          "hidden": "False",
-          "mapfolder": "",
-          "tile": [
-             {
-                "media": "pdf",
-                "title": "Contact your Sales Rep",
-                "link": "",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             },
-             {
-                "media": "pdf",
-                "title": "Contact your FAE",
-                "link": "",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             },
-             {
-                "media": "pdf",
-                "title": "Contact Customer Support",
-                "link": "",
-                "tooltip": "",
-                "folder": "",
-                "icon": "",
-                "tags": ""
-             }
-          ]
-       },
-       {
-          "title": "FARO Users in Your Area",
-          "password": "",
-          "hidden": "False",
-          "mapfolder": "",
-          "tile": {
-             "media": "pdf",
-             "title": "Ask FARO users to participate",
-             "link": "",
-             "tooltip": "",
-             "folder": "",
-             "icon": "",
-             "tags": ""
-          }
-       },
-       {
-          "title": "FARO Product Portal",
-          "password": "",
-          "hidden": "False",
-          "media": "link",
-          "link": "https://knowledge.faro.com/Hardware/3D_Scanners/Focus/Quick_Start_Guides_for_the_Focus_M_and_S_Series?mt-learningpath=focus_m70_s150-350_downloads"
-       }
+        {
+            "title": "FARO Focus Help",
+            "password": "",
+            "hidden": "False",
+            "mapfolder": "",
+            "tile": [
+                {
+                    "media": "link",
+                    "title": "Quick Start Guide",
+                    "link": "https://knowledge.faro.com/Hardware/3D_Scanners/Focus/Quick_Start_Guides_for_the_Focus_M_and_S_Series?mt-learningpath=focus_m70_s150-350_downloads",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                },
+                {
+                    "media": "youtube",
+                    "title": "Youtube video",
+                    "link": "https://youtu.be/oWYCKyAVtjs",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                },
+                {
+                    "media": "link",
+                    "title": "Wireless Remote",
+                    "link": "http://192.168.123.123:8400/ui",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                }
+            ]
+        },
+        {
+            "title": "FARO ScanPlan Help",
+            "password": "",
+            "hidden": "False",
+            "mapfolder": "",
+            "tile": [
+                {
+                    "media": "pdf",
+                    "title": "ScanPlan Setup Guide",
+                    "link": "https://s3.us-east-2.amazonaws.com/faroassist-database/scanplan/pdf/ScanPlan-Comprehensive-setup-guide-V1.02.pdf",
+                    "tooltip": "Use ScanPlanToday!",
+                    "folder": "",
+                    "icon": "",
+                    "tags": "scanplan, workflow, steps, how, use, setup, basics, first, time"
+                },
+                {
+                    "media": "link",
+                    "title": "Launch ScanPlan Control App",
+                    "link": "http://192.168.123.123:8400/ui",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                },
+                {
+                    "media": "pdf",
+                    "title": "Jump Start - Phone Friendly",
+                    "link": "https://s3.us-east-2.amazonaws.com/faroassist-database/scanplan/pdf/SP_JumpStart.pdf",
+                    "tooltip": "Basic workflow to start using the ScanPlan",
+                    "folder": "",
+                    "icon": "https://s3.us-east-2.amazonaws.com/faroassist-database/scanplan/images/PhoneFriendly.png",
+                    "tags": "scanplan, workflow, steps, how, use, setup, basics"
+                }
+            ]
+        },
+        {
+            "title": "FARO Assist! (FZ3 + FZ2)",
+            "password": "",
+            "hidden": "False",
+            "mapfolder": "",
+            "tile": [
+                {
+                    "media": "link",
+                    "title": "FZ3 - FARO Assist",
+                    "link": "https://www.faroassist.com/?v=p03",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "https://s3.us-east-2.amazonaws.com/faroassist-database\\_resources\\fz3_charm.png",
+                    "tags": ""
+                },
+                {
+                    "media": "link",
+                    "title": "FZ2 - FARO Assist",
+                    "link": "https://www.faroassist.com/?v=p02",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "https://s3.us-east-2.amazonaws.com/faroassist-database\\_resources\\fz2_charm.png",
+                    "tags": ""
+                }
+            ]
+        },
+        {
+            "title": "Your FARO Expert",
+            "password": "",
+            "hidden": "False",
+            "mapfolder": "",
+            "tile": [
+                {
+                    "media": "pdf",
+                    "title": "Contact your Sales Rep",
+                    "link": "",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                },
+                {
+                    "media": "pdf",
+                    "title": "Contact your FAE",
+                    "link": "",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                },
+                {
+                    "media": "pdf",
+                    "title": "Contact Customer Support",
+                    "link": "",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                }
+            ]
+        },
+        {
+            "title": "FARO Users in Your Area",
+            "password": "",
+            "hidden": "False",
+            "mapfolder": "",
+            "tile": [
+                {
+                    "media": "pdf",
+                    "title": "Ask FARO users to participate",
+                    "link": "",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                }
+            ]
+        },
+        {
+            "title": "FARO Product Portal",
+            "password": "",
+            "hidden": "False",
+            "media": "link",
+            "tile": [
+                {
+                    "media": "pdf",
+                    "title": "Ask FARO users to participate",
+                    "link": "https://knowledge.faro.com/Hardware/3D_Scanners/Focus/Quick_Start_Guides_for_the_Focus_M_and_S_Series?mt-learningpath=focus_m70_s150-350_downloads",
+                    "tooltip": "",
+                    "folder": "",
+                    "icon": "",
+                    "tags": ""
+                }
+            ]
+        }
     ]
- }
- 
+}

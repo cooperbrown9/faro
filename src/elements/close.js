@@ -14,7 +14,7 @@ export default function Close({ onPress }) {
 const styles = StyleSheet.create({
     back: {
         position: 'absolute', left: 16, bottom: 32, height: 64, width: 64, borderRadius: 32,
-        justifyContent: 'center', alignItems: 'center', zIndex: 10000, backgroundColor: '#002f6c'
+        justifyContent: 'center', alignItems: 'center', backgroundColor: '#002f6c', zIndex: 100
     },
     img: { 
         height: 32, width: 32, 

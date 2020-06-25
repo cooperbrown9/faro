@@ -14,7 +14,7 @@ export default function Button({ title, onPress }) {
 const styles = StyleSheet.create({
     button: {
         alignSelf: 'stretch', height: 120, borderRadius: 8,
-        backgroundColor: '#ffd95b',
+        backgroundColor: '#1b93cb',
         justifyContent: 'center', alignItems: 'center',
         marginBottom: 32,
         shadowColor: "#000",
@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     text: {
-        fontSize: 24, color: 'white'
+        fontSize: 24, color: 'white', fontFamily: 'Bold'
     }
 })

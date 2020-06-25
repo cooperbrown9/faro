@@ -4,8 +4,8 @@ import { View, ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-nati
 export default function Header({ title }) {
 
     return (
-        <View style={styles.header}>
-            <Text style={styles.title}>{title}</Text>
+        <View style={[styles.header]}>
+            <Text style={[styles.title, (title.length > 20) ? { fontSize: 32 } : null]}>{title}</Text>
         </View>
     )
 }
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
     },
     title: {
-        fontFamily: 'Arial', color: 'white', fontSize: 48,
-        position: 'absolute', left: 16, bottom: 16
+        fontFamily: 'Bold', color: 'white', fontSize: 40,
+        position: 'absolute', left: 12, bottom: 16, paddingRight: 16
     }
 })

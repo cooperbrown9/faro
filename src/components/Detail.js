@@ -27,9 +27,10 @@ function Detail({ panel, onClose }) {
             <Close onPress={onClose} />
 
             <Modal animationType={'slide'} visible={_panel.isPresented}>
-                <WebView source={{ uri: _panel.uri }}>
+                <View style={{flex: 1}}>
+                    <WebView source={{ uri: _panel.uri }} />
                     <Close onPress={() => present({ isPresented: false, uri: '' })}/>
-                </WebView>
+                </View>
             </Modal>
         </View>
     )
