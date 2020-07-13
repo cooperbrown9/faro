@@ -4,32 +4,37 @@ import { WebView } from 'react-native-webview';
 
 
 import Button from '../elements/button';
+import ButtonImage from '../elements/button-image';
 import Header from '../elements/header';
 import Close from '../elements/close';
 
 
-const BLUE = '#01579b'
 function Detail({ panel, onClose }) {
 
     const [_panel, present] = useState({ isPresented: false, uri: '' })
+    let g = {}
 
-    console.log(panel)
+    console.log('PANEL', panel)
     return (
         <View style={styles.container}>
             <Header title={panel.title} />
 
             <ScrollView style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}>
-                {(panel.tile.map((t, i) => (
-                    <Button title={t.title} onPress={() => present({ isPresented: true, uri: t.link })} />
-                )))}
+                {(!panel.tile.length)
+                    ? <Button title={panel.tile.title} onPress={() => present({ isPresented: true, uri: panel.tile.link })} />
+                    : (panel.tile.map((t, i) => (
+                        <Button title={t.title} uri={t.icon} onPress={() => present({ isPresented: true, uri: t.link })} />
+                    )))
+                }
+
             </ScrollView>
 
             <Close onPress={onClose} />
 
             <Modal animationType={'slide'} visible={_panel.isPresented}>
-                <View style={{flex: 1}}>
+                <View style={{ flex: 1 }}>
                     <WebView source={{ uri: _panel.uri }} />
-                    <Close onPress={() => present({ isPresented: false, uri: '' })}/>
+                    <Close onPress={() => present({ isPresented: false, uri: '' })} />
                 </View>
             </Modal>
         </View>

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 
 import Detail from './Detail';
@@ -8,6 +10,10 @@ import Header from '../elements/header';
 import data from '../../data/screens.json';
 
 const BLUE = '#01579b'
+const DATA = 'https://faroassist-database.s3.us-east-2.amazonaws.com/faroapp/faroapp-ps/xml/faroapp-layout.json';
+// CONST ABCD = 'https://faroassist-database.s3.us-east-2.amazonaws.com/faroapp/faroapp-ps/xml/faroapp-layout.json';
+
+
 class Home extends Component {
 
     state = {
@@ -17,11 +23,26 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        console.log('yup', data)
-        this.setState({ panels: data.panel })
+        // console.log('yup', data)
+        // this.setState({ panels: data.panel })
+        this.loadData()
+    }
+
+    loadData() {
+        axios.get(DATA).then((data) => {
+            // console.log(data.data)
+
+            // s = s.replace(/[\[\]&]+/g, '');
+            this.setState({ panels: data.data.panel })
+        }).catch(e => console.log(e))
     }
 
     onSelect = (panel) => {
+        console.log(panel)
+        if(!panel.tile) {
+            // this.setState({ detailPresented: true, panelToPresent: panel })
+            return
+        }
         this.setState({ detailPresented: true, panelToPresent: panel })
     }
 

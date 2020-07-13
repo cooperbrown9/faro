@@ -1,26 +1,19 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function Button({ title, onPress, uri = null }) {
+export default function ButtonImage({ title, onPress, uri }) {
 
 
     return (
         <TouchableOpacity style={styles.button} onPress={onPress}>
             <Text style={styles.text}>{title}</Text>
-            {(uri) ?
-                <View style={styles.imgContainer}>
-                    <Image style={styles.img} source={{ uri }} />
-
-                </View>
-                : null
-            }
+            <Image style={styles.img} source={{ uri }} />
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        flexDirection: 'row', paddingHorizontal: 16,
         alignSelf: 'stretch', height: 120, borderRadius: 8,
         backgroundColor: '#1b93cb',
         justifyContent: 'center', alignItems: 'center',
@@ -34,12 +27,10 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     text: {
-        flex: 4, fontSize: 24, color: 'white', fontFamily: 'Bold'
-    },
-    imgContainer: {
-        flex: 1
+        fontSize: 24, color: 'white', fontFamily: 'Bold'
     },
     img: {
-        height: 64, width: 64, tintColor: 'white'
+        height: 64, width: 64, tintColor: 'white',
+        
     }
 })
