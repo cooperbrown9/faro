@@ -6,7 +6,7 @@ export default function Button({ title, onPress, uri = null }) {
 
     return (
         <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.text}>{title}</Text>
+            <Text style={styles.text} allowFontScaling={false}>{title}</Text>
             {(uri) ?
                 <View style={styles.imgContainer}>
                     <Image style={styles.img} source={{ uri }} />
