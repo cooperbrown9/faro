@@ -5,7 +5,7 @@ export default function Header({ title }) {
 
     return (
         <View style={[styles.header]}>
-            <Text style={[styles.title, (title.length > 16) ? { fontSize: 32 } : null]}>{title}</Text>
+            <Text style={[styles.title, (title.length > 16) ? { fontSize: 32 } : null]} allowFontScaling={false}>{title}</Text>
         </View>
     )
 }

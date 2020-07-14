@@ -7,14 +7,15 @@ import Button from '../elements/button';
 import ButtonImage from '../elements/button-image';
 import Header from '../elements/header';
 import Close from '../elements/close';
+import BeResource from './BeResource';
 
 
 function Detail({ panel, onClose }) {
 
     const [_panel, present] = useState({ isPresented: false, uri: '' })
+    const [formPresented, presentForm] = useState(false)
     let g = {}
 
-    console.log('PANEL', panel)
     return (
         <View style={styles.container}>
             <Header title={panel.title} />
@@ -27,9 +28,21 @@ function Detail({ panel, onClose }) {
                     )))
                 }
 
+                {(panel.title.toLowerCase().includes('users in your'))
+                    ? <Button title={'Become a Resource'} onPress={() => presentForm(true)} />
+                    : null
+                }
+
             </ScrollView>
 
             <Close onPress={onClose} />
+
+            {(panel.title.toLowerCase().includes('users in your'))
+                ? <Modal animationType={'slide'} visible={formPresented}>
+                    <BeResource onClose={() => presentForm(false)} />
+                </Modal>
+                : null
+            }
 
             <Modal animationType={'slide'} visible={_panel.isPresented}>
                 <View style={{ flex: 1 }}>

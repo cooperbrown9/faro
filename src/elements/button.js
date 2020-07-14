@@ -20,10 +20,10 @@ export default function Button({ title, onPress, uri = null }) {
 
 const styles = StyleSheet.create({
     button: {
-        flexDirection: 'row', paddingHorizontal: 16,
+        flexDirection: 'row', paddingLeft: 16,
         alignSelf: 'stretch', height: 120, borderRadius: 8,
         backgroundColor: '#1b93cb',
-        justifyContent: 'center', alignItems: 'center',
+        justifyContent: 'space-around', alignItems: 'center',
         marginBottom: 32,
         shadowColor: "#000",
         shadowOffset: {
@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     text: {
-        flex: 4, fontSize: 24, color: 'white', fontFamily: 'Bold'
+        flex: 3, fontSize: 24, color: 'white', fontFamily: 'Bold'
     },
     imgContainer: {
-        flex: 1
+        flex: 1, backgroundColor: 'gold', padding: 12, borderBottomRightRadius: 4, borderTopRightRadius: 4
     },
     img: {
-        height: 64, width: 64, tintColor: 'white'
+        tintColor: 'white', width: 'auto', height: '100%'
     }
 })
