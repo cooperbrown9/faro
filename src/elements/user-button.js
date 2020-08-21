@@ -14,8 +14,8 @@ export default function UserButton({ title, products, phone, onPress }) {
 
 const styles = StyleSheet.create({
     button: {
-        height: 100, borderRadius: 8,
-        backgroundColor: '#1b93cb',
+        height: 100, borderRadius: 8,paddingTop: 8, paddingBottom: 8,
+        backgroundColor: 'rgb(220,220,220)',//'#1b93cb',
         justifyContent: 'center', alignItems: 'stretch',
         marginBottom: 32,
         shadowColor: "#000",
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     text: {
-        flex: 1,fontSize: 24, color: 'white', fontFamily: 'Bold', paddingLeft: 16
+        flex: 1,fontSize: 24, color: 'rgb(20,59,97)', fontFamily: 'Bold', paddingLeft: 16
     },
     products: {
-        fontSize: 18, color: 'rgb(220,220,220)', fontFamily: 'Bold', paddingLeft: 16
+        fontSize: 18, color: 'rgb(20,59,97)', fontFamily: 'Bold', paddingLeft: 16
     },
 })

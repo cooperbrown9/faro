@@ -13,7 +13,7 @@ export default function Header({ title }) {
 const styles = StyleSheet.create({
     header: {
         alignSelf: 'stretch',
-        height: 140, backgroundColor: '#002f6c', //ffd95b
+        height: 140, backgroundColor: 'rgb(20,59,97)', //ffd95b
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

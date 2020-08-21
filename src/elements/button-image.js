@@ -15,7 +15,7 @@ export default function ButtonImage({ title, onPress, uri }) {
 const styles = StyleSheet.create({
     button: {
         alignSelf: 'stretch', height: 100, borderRadius: 8,
-        backgroundColor: '#1b93cb',
+        backgroundColor: 'rgb(220,220,220)',//'#1b93cb',
         justifyContent: 'center', alignItems: 'center',
         marginBottom: 32,
         shadowColor: "#000",
@@ -27,10 +27,9 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     text: {
-        fontSize: 24, color: 'white', fontFamily: 'Bold'
+        fontSize: 24, color: 'rgb(20,59,97)', fontFamily: 'Bold'
     },
     img: {
-        height: 48, width: 48, tintColor: 'white',
-        
+        height: 48, width: 48, tintColor: 'rgb(20,59,97)'
     }
 })
