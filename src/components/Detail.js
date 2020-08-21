@@ -8,13 +8,23 @@ import ButtonImage from '../elements/button-image';
 import Header from '../elements/header';
 import Close from '../elements/close';
 import BeResource from './BeResource';
+import UsersNearYou from './UsersNearYou';
 
 
 function Detail({ panel, onClose }) {
 
     const [_panel, present] = useState({ isPresented: false, uri: '' })
     const [formPresented, presentForm] = useState(false)
+    const [usersNearYou, presentUsersNearYou] = useState(false)
     let g = {}
+
+    function isUsersNearYou() {
+        if (panel.title.toLowerCase().includes('users in your area')) {
+            return (
+                <Button title={'Users Near You'} onPress={() => presentUsersNearYou(true)} />
+            )
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -29,9 +39,11 @@ function Detail({ panel, onClose }) {
                 }
 
                 {(panel.title.toLowerCase().includes('users in your'))
-                    ? <Button title={'Become a Resource'} onPress={() => presentForm(true)} />
+                    ? <Button title={'Become a Resource'} onPress={() => /*presentForm(true)*/ alert('Coming Soon!')} />
                     : null
                 }
+
+                {isUsersNearYou()}
 
             </ScrollView>
 
@@ -43,6 +55,11 @@ function Detail({ panel, onClose }) {
                 </Modal>
                 : null
             }
+
+
+            <Modal animationType={'slide'} visible={usersNearYou}>
+                <UsersNearYou onClose={() => presentUsersNearYou(false)} />
+            </Modal>
 
             <Modal animationType={'slide'} visible={_panel.isPresented}>
                 <View style={{ flex: 1 }}>

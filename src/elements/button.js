@@ -3,25 +3,25 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function Button({ title, onPress, uri = null }) {
 
-
+    console.log('URI', uri)
     return (
         <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.text} allowFontScaling={false}>{title}</Text>
             {(uri) ?
                 <View style={styles.imgContainer}>
-                    <Image style={styles.img} source={{ uri }} />
+                    <Image style={styles.img} source={{ uri: uri }} />
 
                 </View>
                 : null
             }
+            <Text style={styles.text} allowFontScaling={false}>{title}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        flexDirection: 'row', paddingLeft: 16,
-        alignSelf: 'stretch', height: 120, borderRadius: 8,
+        flexDirection: 'row', paddingRight: 16,
+        alignSelf: 'stretch', height: 100, borderRadius: 8,
         backgroundColor: '#1b93cb',
         justifyContent: 'space-around', alignItems: 'center',
         marginBottom: 32,
@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
     },
     text: {
-        flex: 3, fontSize: 24, color: 'white', fontFamily: 'Bold'
+        flex: 3, fontSize: 24, color: 'white', fontFamily: 'Bold', paddingLeft: 16
     },
     imgContainer: {
-        flex: 1, backgroundColor: 'gold', padding: 12, borderBottomRightRadius: 4, borderTopRightRadius: 4
+        flex: 1, backgroundColor: 'green', padding: 12, borderBottomLeftRadius: 4, borderTopLeftRadius: 4
     },
     img: {
         tintColor: 'white', width: 'auto', height: '100%'

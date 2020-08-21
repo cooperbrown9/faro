@@ -1,48 +1,39 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 
-import Detail from './Detail';
-
 import Button from '../elements/button';
+import UserButton from '../elements/user-button';
+import Close from '../elements/close';
 import ButtonImage from '../elements/button-image';
 import Header from '../elements/header';
 import HeaderImage from '../elements/header-image';
 
-import data from '../../data/screens.json';
 
-const BLUE = '#01579b'
-const DATA = 'https://faroassist-database.s3.us-east-2.amazonaws.com/faroapp/faroapp-ps/xml/faroapp-layout.json';
-// CONST ABCD = 'https://faroassist-database.s3.us-east-2.amazonaws.com/faroapp/faroapp-ps/xml/faroapp-layout.json';
-
-
-class Home extends Component {
+class UsersNearYou extends Component {
 
     state = {
-        panels: [],
+        users: [],
         panelToPresent: null,
         detailPresented: false
     }
 
     componentDidMount() {
-        // console.log('yup', data)
-        // this.setState({ panels: data.panel })
         this.loadData()
     }
 
     loadData() {
-        axios.get(DATA).then((data) => {
-            // console.log(data.data)
-
-            // s = s.replace(/[\[\]&]+/g, '');
-            this.setState({ panels: data.data.panel })
-        }).catch(e => console.log(e))
+        const users = [
+            { agency: 'Sanford PD', city: 'Sanford', state: 'FL', phone: '555-555-5555', contact: 'Detective Johnson', faro_products: 'Focus, Scene, FARO Zone 3D' },
+            { agency: 'Heathrow PD', city: 'Heathrow', state: 'FL', phone: '555-555-5555', contact: 'Detective Smith', faro_products: 'Freestyle, FARO Zone 3D' },
+            { agency: 'Winter Springs', city: 'Winter Springs', state: 'FL', phone: '555-555-5555', contact: 'Sgt. Jones', faro_products: 'Focus, ScanPlan, FARO Zone 3D' }
+        ]
+        this.setState({ users })
     }
 
     onSelect = (panel) => {
         console.log(panel)
-        if(!panel.tile) {
+        if (!panel.tile) {
             // this.setState({ detailPresented: true, panelToPresent: panel })
             return
         }
@@ -52,19 +43,22 @@ class Home extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <HeaderImage title={'FARO Inc.'} />
+                <Header title={'Users Near You'} />
                 <ScrollView style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}>
-                    {(this.state.panels.map((p, i) => {
-                        console.log('PANEL', p)
-                        return(
-                        <Button title={p.title} icon={p.icon} key={i} onPress={() => this.onSelect(p)} />
-                    )}))}
+                    {(this.state.users.map((u, i) => {
+                        console.log('PANEL', u)
+                        return (
+                            <UserButton title={u.agency} products={u.faro_products} phone={u.phone} key={i} onPress={() => this.onSelect(u)} />
+                        )
+                    }))}
 
                 </ScrollView>
 
-                <Modal animationType={'slide'} visible={this.state.detailPresented}>
+                <Close onPress={this.props.onClose} />
+
+                {/* <Modal animationType={'slide'} visible={this.state.detailPresented}>
                     <Detail panel={this.state.panelToPresent} onClose={() => this.setState({ detailPresented: false })} />
-                </Modal>
+                </Modal> */}
             </View>
         )
     }
@@ -93,4 +87,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Home;
+export default UsersNearYou;

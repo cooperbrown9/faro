@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import * as Font from 'expo-font';
+import Constants from 'expo-constants';
 
 import Home from './src/components/Home';
 
-// import Navigator from './src/nav/navigator';
+import { getZip, setZip } from './src/api/local';
+import ZipCode from './src/components/ZipCode';
 
 export default class App extends Component {
 
 
   state = {
-    isReady: false
+    isReady: false,
+    zip: null
   }
 
   async componentDidMount() {
@@ -19,17 +22,39 @@ export default class App extends Component {
       'Regular': require('./assets/Roboto-Regular.ttf'),
       'Bold': require('./assets/Roboto-Bold.ttf')
     })
-    this.setState({ isReady: true })
+
+    const zip = await getZip()
+
+    if(!zip) {
+      return this.setState({ isReady: true, zip: zip })
+    }
+
+    this.setState({ isReady: true, zip: zip })
+  }
+
+  onCompleteZip = async(zip) => {
+    await setZip(zip)
+
+    this.setState({ zip })
   }
 
   render() {
     if(!this.state.isReady) {
       return( 
-        <View style={{flex: 1, backgroundColor: 'blue' }}>
-
+        <View style={{flex: 1, backgroundColor: 'blue', justifyContent: 'center' }}>
+          <Text style={{fontSize: 24, textAlign: 'center'}}>{Constants.manifest.version}</Text>
         </View>
       )
     }
+
+
+
+    if(!this.state.zip) {
+      return(
+        <ZipCode onComplete={this.onCompleteZip} />
+      )
+    }
+
     return (
       <Home />
     );
