@@ -9,8 +9,9 @@ import Button from '../elements/button';
 import ButtonImage from '../elements/button-image';
 import Header from '../elements/header';
 import HeaderImage from '../elements/header-image';
+import UsersNearYou from './UsersNearYou';
 
-import data from '../../data/screens.json';
+// import data from '../../data/screens.json';
 
 const BLUE = '#01579b'
 const DATA = 'https://faroassist-database.s3.us-east-2.amazonaws.com/faroapp/faroapp-ps/xml/faroapp-layout.json';
@@ -22,7 +23,8 @@ class Home extends Component {
     state = {
         panels: [],
         panelToPresent: null,
-        detailPresented: false
+        detailPresented: false,
+        usersNearYouPresented: false
     }
 
     componentDidMount() {
@@ -31,11 +33,12 @@ class Home extends Component {
         this.loadData()
     }
 
-    loadData() {
-        axios.get(DATA).then((data) => {
-            // console.log(data.data)
 
-            // s = s.replace(/[\[\]&]+/g, '');
+    loadData() {
+        axios.get(DATA, { headers: {
+                'Cache-Control': 'max-age=1'
+            }}).then((data) => {
+
             this.setState({ panels: data.data.panel })
         }).catch(e => console.log(e))
     }
@@ -46,6 +49,10 @@ class Home extends Component {
             // this.setState({ detailPresented: true, panelToPresent: panel })
             return
         }
+        // if(panel.title.toLowerCase().includes('users in')) {
+            // return this.setState({ usersNearYouPresented: true, panelToPresent: panel })
+        // }
+
         this.setState({ detailPresented: true, panelToPresent: panel })
     }
 
@@ -55,7 +62,6 @@ class Home extends Component {
                 <HeaderImage title={'FARO Inc.'} />
                 <ScrollView style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}>
                     {(this.state.panels.map((p, i) => {
-                        console.log('PANEL', p)
                         return(
                         <Button title={p.title} icon={p.icon} key={i} onPress={() => this.onSelect(p)} />
                     )}))}
@@ -65,6 +71,10 @@ class Home extends Component {
                 <Modal animationType={'slide'} visible={this.state.detailPresented}>
                     <Detail panel={this.state.panelToPresent} onClose={() => this.setState({ detailPresented: false })} />
                 </Modal>
+                
+                {/* <Modal animationType={'slide'} visible={this.state.usersNearYouPresented}>
+                    <UsersNearYou panel={this.state.panelToPresent} onClose={() => this.setState({ usersNearYouPresented: false })} />
+                </Modal> */}
             </View>
         )
     }

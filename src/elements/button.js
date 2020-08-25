@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
         flex: 3, fontSize: 24, color: 'rgb(20,59,97)', fontFamily: 'Bold', paddingLeft: 16
     },
     imgContainer: {
-        flex: 1, backgroundColor: 'rgb(20,59,97)', padding: 12, borderBottomLeftRadius: 4, borderTopLeftRadius: 4
+        flex: 1, backgroundColor: 'rgb(20,59,97)', padding: 12, borderBottomLeftRadius: 4, borderTopLeftRadius: 4, padding: 16
     },
     img: {
-        tintColor: 'white', width: 'auto', height: '100%'
+        width: 'auto', height: '100%'
     }
 })

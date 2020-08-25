@@ -9,6 +9,9 @@ import Header from '../elements/header';
 import Close from '../elements/close';
 import BeResource from './BeResource';
 import UsersNearYou from './UsersNearYou';
+import ZipCode from './ZipCode';
+
+import { getZip, setZip } from '../api/local';
 
 
 function Detail({ panel, onClose }) {
@@ -49,12 +52,12 @@ function Detail({ panel, onClose }) {
 
             <Close onPress={onClose} />
 
-            {(panel.title.toLowerCase().includes('users in your'))
+            {/* {(panel.title.toLowerCase().includes('users in your'))
                 ? <Modal animationType={'slide'} visible={formPresented}>
                     <BeResource onClose={() => presentForm(false)} />
                 </Modal>
                 : null
-            }
+            } */}
 
 
             <Modal animationType={'slide'} visible={usersNearYou}>
@@ -73,7 +76,8 @@ function Detail({ panel, onClose }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: 'rgb(220,220,220)'
     },
     back: {
         position: 'absolute', left: 16, bottom: 32, height: 64, width: 64, borderRadius: 32,

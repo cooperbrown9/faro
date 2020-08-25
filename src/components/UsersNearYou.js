@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import { View, ScrollView, Text, Image, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 
 import Button from '../elements/button';
 import UserButton from '../elements/user-button';
@@ -8,6 +8,9 @@ import Close from '../elements/close';
 import ButtonImage from '../elements/button-image';
 import Header from '../elements/header';
 import HeaderImage from '../elements/header-image';
+import BeResource from './BeResource';
+import ZipCode from './ZipCode';
+import { setZip, getZip } from '../api/local';
 
 
 class UsersNearYou extends Component {
@@ -15,11 +18,17 @@ class UsersNearYou extends Component {
     state = {
         users: [],
         panelToPresent: null,
-        detailPresented: false
+        detailPresented: false,
+        zipPresented: false,
+        zip: ''
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        console.log('da penllll', this.props.panel)
         this.loadData()
+
+        const zip = await getZip()
+        this.setState({ zip })
     }
 
     loadData() {
@@ -40,6 +49,11 @@ class UsersNearYou extends Component {
         this.setState({ detailPresented: true, panelToPresent: panel })
     }
 
+    onCompleteZip = async(zip) => {
+        await setZip(zip)
+        this.setState({ zipPresented: false })
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -55,6 +69,22 @@ class UsersNearYou extends Component {
                 </ScrollView>
 
                 <Close onPress={this.props.onClose} />
+
+
+                <TouchableOpacity style={{ height: 64, width: 64, backgroundColor: '#002f6c', borderRadius: 32, justifyContent: 'center', position: 'absolute', right: 16, bottom: 32 }} onPress={() => this.setState({ zipPresented: true })}>
+                    <Image source={require('../../assets/dial.png')} style={{ height: 32, width: 32, tintColor: 'white', alignSelf: 'center' }} resizeMode='contain' />
+                </TouchableOpacity>
+
+
+                <Modal animationType='slide' visible={this.state.zipPresented}>
+                    <ZipCode onComplete={this.onCompleteZip} />
+                </Modal>
+                {/* {(panel.title.toLowerCase().includes('users in your'))
+                ? <Modal animationType={'slide'} visible={formPresented}>
+                    <BeResource onClose={() => presentForm(false)} />
+                </Modal>
+                : null
+            } */}
 
                 {/* <Modal animationType={'slide'} visible={this.state.detailPresented}>
                     <Detail panel={this.state.panelToPresent} onClose={() => this.setState({ detailPresented: false })} />
