@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal, Image } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal, Image, RefreshControl } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 
@@ -14,9 +14,11 @@ import ZipCode from './ZipCode';
 import { getZip, setZip } from '../api/local';
 
 
-function Detail({ panel, onClose }) {
+function Detail({ panel: _panel, onClose, onRefresh: _onRefresh }) {
 
-    const [_panel, present] = useState({ isPresented: false, uri: '' })
+    const [panel, setPanel] = useState(_panel)
+    const [isRefreshing, setRefresh] = useState(true)
+    const [panelPresent, present] = useState({ isPresented: false, uri: '' })
     const [formPresented, presentForm] = useState(false)
     const [usersNearYou, presentUsersNearYou] = useState(false)
     let g = {}
@@ -29,11 +31,30 @@ function Detail({ panel, onClose }) {
         }
     }
 
+    function refresh() {
+        // setRefresh(true)
+        _onRefresh(panel.title, (newPanel) => {
+            console.log('refresh')
+            if (!newPanel) {
+                console.log('ERROR')
+                // error
+                return setRefresh(false)
+            }
+            console.log('should work')
+            setRefresh(true)
+            setPanel(newPanel)
+            setRefresh(true)
+        })
+        setRefresh(true)
+    }
+// refreshControl={<RefreshControl onRefresh={refresh} isRefreshing={isRefreshing} />}
     return (
         <View style={styles.container}>
             <Header title={panel.title} />
 
-            <ScrollView style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}>
+            <ScrollView
+                style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}
+                >
                 {(!panel.tile.length)
                     ? <Button title={panel.tile.title} onPress={() => present({ isPresented: true, uri: panel.tile.link })} />
                     : (panel.tile.map((t, i) => (
@@ -64,9 +85,9 @@ function Detail({ panel, onClose }) {
                 <UsersNearYou onClose={() => presentUsersNearYou(false)} />
             </Modal>
 
-            <Modal animationType={'slide'} visible={_panel.isPresented}>
+            <Modal animationType={'slide'} visible={panelPresent.isPresented}>
                 <View style={{ flex: 1 }}>
-                    <WebView source={{ uri: _panel.uri }} />
+                    <WebView source={{ uri: panelPresent.uri }} />
                     <Close onPress={() => present({ isPresented: false, uri: '' })} />
                 </View>
             </Modal>

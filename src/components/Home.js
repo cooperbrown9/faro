@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, StyleSheet, Modal, RefreshControl } from 'react-native';
 
 import Detail from './Detail';
 
@@ -23,6 +23,7 @@ class Home extends Component {
     state = {
         panels: [],
         panelToPresent: null,
+        isRefreshing: false,
         detailPresented: false,
         usersNearYouPresented: false
     }
@@ -35,43 +36,83 @@ class Home extends Component {
 
 
     loadData() {
-        axios.get(DATA, { headers: {
+        axios.get(DATA, {
+            headers: {
                 'Cache-Control': 'max-age=1'
-            }}).then((data) => {
-
-            this.setState({ panels: data.data.panel })
+            }
+        }).then((data) => {
+            this.setState({ panels: data.data.panel, isRefreshing: false })
         }).catch(e => console.log(e))
     }
 
     onSelect = (panel) => {
         console.log(panel)
-        if(!panel.tile) {
+        if (!panel.tile) {
             // this.setState({ detailPresented: true, panelToPresent: panel })
             return
         }
         // if(panel.title.toLowerCase().includes('users in')) {
-            // return this.setState({ usersNearYouPresented: true, panelToPresent: panel })
+        // return this.setState({ usersNearYouPresented: true, panelToPresent: panel })
         // }
 
         this.setState({ detailPresented: true, panelToPresent: panel })
+    }
+
+    refresh = async() => {
+        await this.setState({ isRefreshing: true })
+        
+        axios.get(DATA, {
+            headers: {
+                'Cache-Control': 'max-age=1'
+            }
+        }).then((data) => {
+            this.setState({ panels: data.data.panel, isRefreshing: false })
+        }).catch(e => {
+            console.log(e)
+            this.setState({ isRefreshing: false })
+        })
+    }
+
+    _refresh = (panelTitle, cb) => {
+        axios.get(DATA, {
+            headers: {
+                'Cache-Control': 'max-age=1'
+            }
+        }).then((data) => {
+            for(let i = 0; i < data.data.panel.length; i++) {
+                if(data.data.panel[i].title == panelTitle) {
+                    console.log(data.data.panel[i])
+                    return cb(data.data.panel[i])
+                }
+            }
+            return cb(null)
+            // this.setState({ panels: data.data.panel })
+        }).catch(e => {
+            console.log(e)
+          
+        })
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <HeaderImage title={'FARO Inc.'} />
-                <ScrollView style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}>
+                <ScrollView
+                    style={{ flex: 1, padding: 32, backgroundColor: 'transparent' }}
+                    refreshControl={<RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.refresh} />}
+                >
                     {(this.state.panels.map((p, i) => {
-                        return(
-                        <Button title={p.title} icon={p.icon} key={i} onPress={() => this.onSelect(p)} />
-                    )}))}
+                        return (
+                            <Button title={p.title} icon={p.icon} key={i} onPress={() => this.onSelect(p)} />
+                        )
+                    }))}
 
                 </ScrollView>
 
                 <Modal animationType={'slide'} visible={this.state.detailPresented}>
-                    <Detail panel={this.state.panelToPresent} onClose={() => this.setState({ detailPresented: false })} />
+                    <Detail onRefresh={(title, cb) => this._refresh(title, cb)} panel={this.state.panelToPresent} onClose={() => this.setState({ detailPresented: false })} />
                 </Modal>
-                
+
                 {/* <Modal animationType={'slide'} visible={this.state.usersNearYouPresented}>
                     <UsersNearYou panel={this.state.panelToPresent} onClose={() => this.setState({ usersNearYouPresented: false })} />
                 </Modal> */}

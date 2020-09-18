@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
         fontSize: 24, color: 'rgb(20,59,97)', fontFamily: 'Bold'
     },
     img: {
-        height: 48, width: 48, tintColor: 'rgb(20,59,97)'
+        height: 48, width: 48//, tintColor: 'rgb(20,59,97)'
     }
 })
